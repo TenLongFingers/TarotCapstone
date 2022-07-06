@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarot Three Card Spread</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
+        integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -16,7 +19,7 @@
     <div id="deck"></div>
     <button id="refresh">Refresh</button>
     <span id="draw-container">
-        <div id="card-1">
+        <!-- <div id="card-1">
             <button id="flip1">flip</button>
             <p id="card-1-name"></p>
         </div>
@@ -27,12 +30,13 @@
         </div>
         <div id="card-3">
             <button id="flip3">flip</button>
-            <p id="card-3-name"></p>
-        </div>
+            <p id="card-3-name"></p> -->
+        <!-- </div> -->
         <button id="save-draw">Save Draw</button>
     </span>
-    <div id="jouranl"></div>
-    <script src="home.js"></script>
+    <div id="journal"></div>
+    <script src="./home.js" type="module">
+    </script>
 </body>
 
 </html>
