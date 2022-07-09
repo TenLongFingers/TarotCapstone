@@ -1,25 +1,33 @@
 //query selector definitions
-// const card1 = document.querySelector("#card-1");
-
 import { shuffleArray } from "./utilis.mjs";
 
-// const card2 = document.querySelector("#card-2");
-const deck = document.querySelector("#deck");
+const deck = document.querySelector(".shuffled-deck");
+const drawCont = document.querySelector("#draw-container");
 const baseURL = "http://localhost:2100";
-
-// const card3 = document.querySelector("#card-3");
-const drawCont = document.queryCommandIndeterm("#draw-container");
 const choices = [];
 
 //insert card function
 const MakeTarotCard = (cards) => {
-  let description = shuffleArray(cards.fortune_telling);
-  return `
-    <div class = "drawn-tarot">
-    <img src = "./Assets/${cards.img}" alt = "${cards.name}"/>
-    <h3>${cards.name}</h3>
-    <p>Fortune: ${description[0]}
-    `;
+  function pickCard() {
+    choices.push(MakeTarotCard(cards));
+    // for (let index = 0; index < choices.length; index++) {
+    //   if (deck.includes(choices[index])) {
+    //     deck.removeAttribute(choices[index]);
+    //   }
+    // }
+    displayChoices();
+    console.log(choices);
+  }
+  if (choices.length < 3) {
+    const li = document.createElement(`li`);
+    const img = document.createElement(`img`);
+    li.className = "tarot-card";
+    li.onclick = pickCard;
+    img.src = `./Assets/${cards.img}`;
+    img.alt = `${cards.name}`;
+    li.appendChild(img);
+    return li;
+  }
 };
 
 //display deck
@@ -29,12 +37,19 @@ const getDeck = () => {
 
     data.cards.forEach((card) => {
       let cardHTML = MakeTarotCard(card);
-      deck.innerHTML += cardHTML;
+      deck.appendChild(cardHTML);
     });
   });
 };
 
-//add card to spread
+const displayChoices = () => {
+  console.log(choices);
+  drawCont.innerHTML = "";
+  choices.forEach((card) => {
+    drawCont.appendChild(card);
+  });
+};
 
+//add card to spread
 //function testing area
 getDeck();

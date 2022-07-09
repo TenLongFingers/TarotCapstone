@@ -14,24 +14,14 @@
 <body>
     <span id="title">
         <h1>Three Card Tarot Spread</h1>
-        <p>Pick a card and flip them over when you're ready to read!</p>
+        <p>Pick a card, any card! Well, three.</p>
+        <p>Then click on them to flip them over when you're ready to read!</p>
     </span>
-    <div id="deck"></div>
+    <div id="deck-container">
+        <ul class="shuffled-deck"></ul>
+    </div>
     <button id="refresh">Refresh</button>
     <span id="draw-container">
-        <!-- <div id="card-1">
-            <button id="flip1">flip</button>
-            <p id="card-1-name"></p>
-        </div>
-        </div>
-        <div id="card-2">
-            <button id="flip2">flip</button>
-            <p id="card-2-name"></p>
-        </div>
-        <div id="card-3">
-            <button id="flip3">flip</button>
-            <p id="card-3-name"></p> -->
-        <!-- </div> -->
         <button id="save-draw">Save Draw</button>
     </span>
     <div id="journal"></div>

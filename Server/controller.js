@@ -10,6 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 //ENDPOINTS
+
 //all cards
 app.get("/api/cards", (req, res) => {
   try {
@@ -17,21 +18,13 @@ app.get("/api/cards", (req, res) => {
   } catch (error) {
     console.log("Error fetching cards", error);
   }
-  //   res.sendStatus(400);
+  res.sendStatus(400);
 });
 
-//shuffled cards
-// app.get("/api/cards/draw", (req, res) => {
-//   try {
-//     let shuffledDeck = shuffleArray(cards);
-//     res.status(200).send(shuffledDeck[0]);
-//   } catch (error) {
-//     console.log("Error getting card", error);
-//     res.sendStatus(400);
-//   }
-// });
-
-//I'll need a post request here soon
+//post request
+app.post("/api/draw", (req, res) => {
+  req.body;
+});
 
 //server port info
 const port = process.env.PORT || 2100;
