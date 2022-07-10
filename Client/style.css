@@ -1,7 +1,15 @@
+.li {
+    position: absolute;
+    top: 0;
+}
+
 .shuffled-deck img {
     width: 80px;
+    position: relative;
 }
-.shuffled-deck{
+
+/* this was what I used to do with the grid system, but I don't think I like it */
+/* .shuffled-deck{
     list-style: none;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -22,4 +30,4 @@ li:nth-child(3){
 }
 li:nth-child(4){
     grid-row:1/span 2;
-}
+} */
