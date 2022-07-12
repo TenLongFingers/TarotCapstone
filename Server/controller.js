@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const cards = require("./tarot-images.json");
+const savedDrawsArr = [];
 // const { shuffleArray } = require("../Client/utilis.mjs");
 //Shuffle on client
 
@@ -17,13 +18,15 @@ app.get("/api/cards", (req, res) => {
     res.status(200).send(cards);
   } catch (error) {
     console.log("Error fetching cards", error);
+    res.sendStatus(400);
   }
-  res.sendStatus(400);
 });
 
 //post request
-app.post("/api/draw", (req, res) => {
-  req.body;
+app.post("/api/savedraw", (req, res) => {
+  const cardSpread = req.body;
+  savedDrawsArr.push(cardSpread);
+  res.status(200).send(savedDrawsArr);
 });
 
 //server port info

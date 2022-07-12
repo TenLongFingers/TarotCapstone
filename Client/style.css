@@ -1,33 +1,82 @@
+/* white #F2F2DC
+blue gray #9FBFAD
+bright yellow #F2E416
+dark blue #23302B
+orange #D95F18 */
+
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Georgia", serif;
+    color:#23302B
+}
+html {
+    height: 100%;
+}
+body {background-image: linear-gradient(#dbf1fe,#8fcbff) ;}
+
+nav {
+    position: fixed;
+    padding: 5px;
+    margin: 5px;
+    top:2%;
+    color:#F2E416;
+    /* background-color: #23302B; */
+    font-size: large;
+}
+h1{
+    position: relative;
+    padding: 20px;
+    margin: 20px;
+    margin-top: 40px;
+
+}
+
 .li {
     position: absolute;
     top: 0;
 }
 
+.deck-container{
+    padding: 10 px;
+    margin: 10 px;
+}
+.shuffled-deck{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 50px;
+}
 .shuffled-deck img {
     width: 80px;
-    position: relative;
+    margin-left: -30px;
+    margin-top: -40px;
 }
 
-/* this was what I used to do with the grid system, but I don't think I like it */
-/* .shuffled-deck{
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 5px;
+#draw-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style-type: none;
 }
-li:nth-child(1){
-    grid-column: 1/span2;
-    grid-row:1/span 2;
+#draw-container img {
+    width: 160px;
+    margin: 20px
 }
-li:nth-child(2){
-    grid-column: 1/span2;
-    grid-row:2/span 2;
+
+button {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    font-size: 20px;
+    font-style: italic;
+    border:none;
+    color: #F2F2DC;
+    background-color:#23302B ;
 }
-li:nth-child(3){
-    grid-column: 1/span2;
-    grid-row:3/span 2;
+
+button:hover{
+    background-color:#68766e;
 }
-li:nth-child(4){
-    grid-row:1/span 2;
-} */
+

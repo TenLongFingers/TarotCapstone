@@ -17,11 +17,19 @@ const drawCont = document.querySelector("#draw-container");
 let cardSpread = [];
 let deckArr = [1, 2, 3];
 let shuffledDeck = shuffleArray(deckArr);
+let refreshBtn = document.querySelector(".refresh");
+let saveDrawBtn = document.querySelector("#save-draw");
+let savedSpreadsCont = document.querySelector("#saved-spreads");
 let deckData;
 
-console.log(deckArr);
-
 //refresh button empties out cardSpread array
+//function
+const refreshFunction = (array) => {
+  while (array.length > 0) {
+    array.length = 0;
+  }
+  console.log(array);
+};
 
 //display deck (it's not shuffled yet)
 const deckList = (card) => {
@@ -29,7 +37,7 @@ const deckList = (card) => {
   const li = document.createElement("li");
   li.className = "tarot-card";
   cardImage.onclick = pickCard;
-  cardImage.src = `./Assets/${card.img}`;
+  cardImage.src = `./Assets/back.svg`;
   cardImage.alt = "unkown tarot card";
   cardImage.id = card.number;
   li.appendChild(cardImage);
@@ -41,8 +49,8 @@ const drawCardToSpread = (card) => {
   const cardImage = document.createElement(`img`);
   const li = document.createElement("li");
   li.className = "tarot-card";
-  cardImage.onclick = flipCard();
-  cardImage.src = `./Assets/back.svg`;
+  // cardImage.onclick = `./Assets/${card.img}`;
+  cardImage.src = `./Assets/${card.img}`;
   cardImage.alt = card.name;
   cardImage.id = card.number;
   li.appendChild(cardImage);
@@ -79,13 +87,16 @@ const pickCard = (event) => {
   }
   if (cardSpread.length >= 3) {
     return alert(
-      "You can only draw three cards! Flip them over to start the reading, or hit REFRESH to return all your cards and reshuffle the deck."
+      "You can only draw three cards! Check the instruction page for help with reading a three card spread"
     );
   }
 };
 
-//flip onClick event (just changes the img src tag)
-const flipCard = (event) => {};
+//flip onClick event (just changes the img src tag) (doesn't work)
+const flipCard = (event) => {
+  const cardImage = document.createElement(`img`);
+  cardImage.src = `./Assets/${card.img}`;
+};
 
 //using the deckData to get called later
 const initialDraw = async () => {
@@ -96,7 +107,7 @@ const initialDraw = async () => {
   });
 };
 
-//retrieving the deckData through a request to the backend
+//retrieving the deckData with a get request to display cards to draw
 const getDeck = async () => {
   axios.get(`${baseURL}/api/cards`).then(({ data }) => {
     deckData = data.cards;
@@ -105,14 +116,31 @@ const getDeck = async () => {
   });
 };
 
-//making a post request
+//post request sending the current card spread to the backend
+const saveCardsToDrawArr = async () => {
+  axios.post(`${baseURL}/api/savedraw`, cardSpread).then(({ data }) => {
+    savedSpreadsCont.innerHTML = "";
+    data.forEach((array) => {
+      let spread = document.createElement("div");
+      spread.innerHTML = `<h2>${array[0].name}, ${array[1].name}, ${array[2].name}</h2>`;
+      savedSpreadsCont.append(spread);
+    });
+  });
+};
 
-//save button using the post request
+//save card button function
+saveDrawBtn.onclick = saveCardsToDrawArr;
+
+//retreiving the saved spreads with a get request
+// const newSpreadToSave = async () => {
+//   spread.innerHTML = "";
+
+// }
 
 //use async to get the functions in the right order
 const init = async () => {
   await getDeck();
 };
 
-//run all the necessary deck functions to get the page up and running and ready to draw cards
+//run the deck functions to get the cards ready to draw
 init();
