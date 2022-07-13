@@ -17,21 +17,22 @@ const drawCont = document.querySelector("#draw-container");
 let cardSpread = [];
 let deckArr = [1, 2, 3];
 let shuffledDeck = shuffleArray(deckArr);
-let refreshBtn = document.querySelector(".refresh");
+let refreshBtn = document.querySelector("#refresh");
 let saveDrawBtn = document.querySelector("#save-draw");
 let savedSpreadsCont = document.querySelector("#saved-spreads");
 let deckData;
 
 //refresh button empties out cardSpread array
 //function
-const refreshFunction = (array) => {
-  while (array.length > 0) {
-    array.length = 0;
-  }
-  console.log(array);
+const refreshFunction = () => {
+  cardSpread = [];
+  drawCont.innerHTML = "";
 };
 
-//display deck (it's not shuffled yet)
+//button
+refreshBtn.onclick = refreshFunction;
+
+//create html for cards (it's not shuffled yet)
 const deckList = (card) => {
   const cardImage = document.createElement(`img`);
   const li = document.createElement("li");
@@ -50,6 +51,7 @@ const drawCardToSpread = (card) => {
   const li = document.createElement("li");
   li.className = "tarot-card";
   // cardImage.onclick = `./Assets/${card.img}`;
+  // cardImage.onmouseover =
   cardImage.src = `./Assets/${card.img}`;
   cardImage.alt = card.name;
   cardImage.id = card.number;
@@ -92,12 +94,6 @@ const pickCard = (event) => {
   }
 };
 
-//flip onClick event (just changes the img src tag) (doesn't work)
-const flipCard = (event) => {
-  const cardImage = document.createElement(`img`);
-  cardImage.src = `./Assets/${card.img}`;
-};
-
 //using the deckData to get called later
 const initialDraw = async () => {
   deck.innerHTML = "";
@@ -118,14 +114,17 @@ const getDeck = async () => {
 
 //post request sending the current card spread to the backend
 const saveCardsToDrawArr = async () => {
-  axios.post(`${baseURL}/api/savedraw`, cardSpread).then(({ data }) => {
-    savedSpreadsCont.innerHTML = "";
-    data.forEach((array) => {
-      let spread = document.createElement("div");
-      spread.innerHTML = `<h2>${array[0].name}, ${array[1].name}, ${array[2].name}</h2>`;
-      savedSpreadsCont.append(spread);
+  if (cardSpread.length === 3) {
+    axios.post(`${baseURL}/api/savedraw`, cardSpread).then(({ data }) => {
+      savedSpreadsCont.innerHTML = "";
+      data.forEach((array) => {
+        console.log(array);
+        let spread = document.createElement("div");
+        spread.innerHTML = `<h2>${array[0].name}, ${array[1].name}, ${array[2].name}</h2>`;
+        savedSpreadsCont.append(spread);
+      });
     });
-  });
+  }
 };
 
 //save card button function

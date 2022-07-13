@@ -1,0 +1,17 @@
+Here is a list of features. Those with a * are MVP requirements.
+- Wireframe for each view (pdf file included)
+- *List of MVP features (this document)
+- *App has at least 3 main features (Save button, refresh button, and selecting a card from the deck)
+- *Front end makes a request to the server and handles the response (get requests to display deck)
+- *Front end is interactive
+- *Custom styling
+- *Has at least 5 semantic tags
+- *Includes 1 view
+- Includes 1+ additional view (instructional page)
+- Styling includes flexbox
+- *Includes a GET endpoint and handler function
+- *Includes a POST endpoint and handler function
+- Includes at least 1 controller file
+- Discusses project purpose and demonstrates MVP 
+- Does not discuss broken/unimplemented feature
+- Recording is between 2-3 minutes

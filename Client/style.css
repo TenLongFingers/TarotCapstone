@@ -14,10 +14,11 @@ orange #D95F18 */
 html {
     height: 100%;
 }
-body {background-image: linear-gradient(#dbf1fe,#8fcbff) ;}
+body {
+    background-image: linear-gradient(#dbf1fe,#8fcbff) ;}
 
 nav {
-    position: fixed;
+    position: absolute;
     padding: 5px;
     margin: 5px;
     top:2%;
@@ -27,10 +28,14 @@ nav {
 }
 h1{
     position: relative;
+    text-align: center;
     padding: 20px;
     margin: 20px;
     margin-top: 40px;
 
+}
+#title {
+    text-align: center;
 }
 
 .li {
@@ -38,6 +43,10 @@ h1{
     top: 0;
 }
 
+/* .howto-cont{
+    display: flex;
+    justify-self: center;
+} */
 .deck-container{
     padding: 10 px;
     margin: 10 px;
@@ -45,6 +54,7 @@ h1{
 .shuffled-deck{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     flex-wrap: wrap;
     margin: 50px;
 }
@@ -59,6 +69,7 @@ h1{
     flex-direction: row;
     justify-content: center;
     list-style-type: none;
+    height: 350px;
 }
 #draw-container img {
     width: 160px;
@@ -67,7 +78,7 @@ h1{
 
 button {
     display: flex;
-    justify-content: center;
+    margin: 0 auto;
     padding: 15px;
     font-size: 20px;
     font-style: italic;
