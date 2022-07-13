@@ -15,15 +15,15 @@ html {
     height: 100%;
 }
 body {
-    background-image: linear-gradient(#dbf1fe,#8fcbff) ;}
+    background-image: linear-gradient(#dbf1fe,#8fcbff) ;
+background-repeat: no-repeat;
+background-attachment: fixed;}
 
 nav {
     position: absolute;
     padding: 5px;
     margin: 5px;
     top:2%;
-    color:#F2E416;
-    /* background-color: #23302B; */
     font-size: large;
 }
 h1{
@@ -43,10 +43,6 @@ h1{
     top: 0;
 }
 
-/* .howto-cont{
-    display: flex;
-    justify-self: center;
-} */
 .deck-container{
     padding: 10 px;
     margin: 10 px;
@@ -74,6 +70,11 @@ h1{
 #draw-container img {
     width: 160px;
     margin: 20px
+}
+#saved-spreads {
+    margin: 30px;
+    padding: 30px;
+    text-align: center;
 }
 
 button {

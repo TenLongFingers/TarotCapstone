@@ -50,11 +50,10 @@ const drawCardToSpread = (card) => {
   const cardImage = document.createElement(`img`);
   const li = document.createElement("li");
   li.className = "tarot-card";
-  // cardImage.onclick = `./Assets/${card.img}`;
-  // cardImage.onmouseover =
   cardImage.src = `./Assets/${card.img}`;
   cardImage.alt = card.name;
   cardImage.id = card.number;
+  cardImage.title = card.keywords;
   li.appendChild(cardImage);
   drawCont.appendChild(li);
 };
@@ -129,12 +128,6 @@ const saveCardsToDrawArr = async () => {
 
 //save card button function
 saveDrawBtn.onclick = saveCardsToDrawArr;
-
-//retreiving the saved spreads with a get request
-// const newSpreadToSave = async () => {
-//   spread.innerHTML = "";
-
-// }
 
 //use async to get the functions in the right order
 const init = async () => {
