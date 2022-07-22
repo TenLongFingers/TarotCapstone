@@ -11,7 +11,6 @@ Here is a list of features. Those with a * are MVP requirements.
 - Styling includes flexbox
 - *Includes a GET endpoint and handler function
 - *Includes a POST endpoint and handler function
-- Includes at least 1 controller file
 - Discusses project purpose and demonstrates MVP 
 - Does not discuss broken/unimplemented feature
 - Recording is between 2-3 minutes
