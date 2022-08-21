@@ -15,8 +15,6 @@ const baseURL = "http://localhost:2100";
 const deck = document.querySelector(".shuffled-deck");
 const drawCont = document.querySelector("#draw-container");
 let cardSpread = [];
-let deckArr = [1, 2, 3];
-let shuffledDeck = shuffleArray(deckArr);
 let refreshBtn = document.querySelector("#refresh");
 let saveDrawBtn = document.querySelector("#save-draw");
 let savedSpreadsCont = document.querySelector("#saved-spreads");
@@ -27,6 +25,7 @@ let deckData;
 const refreshFunction = () => {
   cardSpread = [];
   drawCont.innerHTML = "";
+  getDeck();
 };
 
 //button
@@ -34,6 +33,7 @@ refreshBtn.onclick = refreshFunction;
 
 //create html for cards (it's not shuffled yet)
 const deckList = (card) => {
+  console.log(card.number);
   const cardImage = document.createElement(`img`);
   const li = document.createElement("li");
   li.className = "tarot-card";
@@ -61,9 +61,10 @@ const drawCardToSpread = (card) => {
 //Script for what happens when the card has a click event.
 const pickCard = (event) => {
   let targetId = event.target.id; // index of the card in the deckData array
+  let targetIndex = deckData.findIndex((card) => card.number === targetId);
   if (cardSpread.length === 0) {
-    cardSpread.push(deckData[targetId]);
-    drawCardToSpread(deckData[targetId]);
+    cardSpread.push(deckData[targetIndex]);
+    drawCardToSpread(deckData[targetIndex]);
     return;
   }
   //This could maybe be a forloop but I only have three options and this seemed simpler for now.
@@ -71,8 +72,8 @@ const pickCard = (event) => {
     if (cardSpread[0].number === targetId) {
       return alert("You already drew that card! Please pick a different one.");
     }
-    cardSpread.push(deckData[targetId]);
-    drawCardToSpread(deckData[targetId]);
+    cardSpread.push(deckData[targetIndex]);
+    drawCardToSpread(deckData[targetIndex]);
     return;
   }
   if (cardSpread.length === 2) {
@@ -82,8 +83,8 @@ const pickCard = (event) => {
     ) {
       return alert("You already drew that card! Please pick a different one.");
     }
-    cardSpread.push(deckData[targetId]);
-    drawCardToSpread(deckData[targetId]);
+    cardSpread.push(deckData[targetIndex]);
+    drawCardToSpread(deckData[targetIndex]);
     return;
   }
   if (cardSpread.length >= 3) {
@@ -97,6 +98,7 @@ const pickCard = (event) => {
 const initialDraw = async () => {
   deck.innerHTML = "";
   deckData.forEach((card) => {
+    console.log(card);
     let cardHTML = deckList(card);
     deck.appendChild(cardHTML);
   });
@@ -105,7 +107,8 @@ const initialDraw = async () => {
 //retrieving the deckData with a get request to display cards to draw
 const getDeck = async () => {
   axios.get(`${baseURL}/api/cards`).then(({ data }) => {
-    deckData = data.cards;
+    const shuffledDeck = shuffleArray(data.cards);
+    deckData = shuffledDeck;
     initialDraw();
     return;
   });
