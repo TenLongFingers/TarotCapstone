@@ -1,10 +1,18 @@
 //imports
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const app = express();
+
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "../Client/home.html"));
+});
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "../Client/howto.html"));
+});
+
 const cards = require("./tarot-images.json");
 const savedDrawsArr = [];
-// const { shuffleArray } = require("../Client/utilis.mjs");
 //Shuffle on client
 
 app.use(cors());
